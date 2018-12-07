@@ -10,3 +10,27 @@ dependencies {
     compile 'com.google.guava:guava:23.0'
     testCompile 'junit:junit:4.12'
 }
+
+artifactory {
+    contextUrl = "http://54.254.232.223:8081/artifactory"
+    publish {
+        repository {
+            repoKey = 'nocnoc-qa-gradle'
+            username = "admin"
+            password = "Admin123"
+            maven = true
+
+        }       
+        defaults {
+            publications ('mavenJava')
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
