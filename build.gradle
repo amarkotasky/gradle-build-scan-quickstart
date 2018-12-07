@@ -1,4 +1,4 @@
-apply plugin: "com.jfrog.artifactory"
+
 
 plugins {
     id 'java'
@@ -8,6 +8,14 @@ plugins {
 repositories {
     jcenter()
 }
+
+apply plugin: 'scala'
+apply plugin: 'maven-publish'
+apply plugin: "com.jfrog.artifactory"
+
+version = '1.0.0-SNAPSHOT'
+group = 'com.buransky'
+
 
 dependencies {
     compile 'com.google.guava:guava:23.0'
