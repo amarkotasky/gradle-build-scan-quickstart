@@ -1,14 +1,3 @@
-
-
-plugins {
-    id 'java'
-    id "com.jfrog.artifactory" version "4.4.18"  
-}
-
-repositories {
-    jcenter()
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
@@ -16,31 +5,21 @@ apply plugin: 'artifactory-publish'
 
 groupId = 'myGroup'
 version = '1.0'
-def artifactId = test.name
+def artifactId = projectDir.name
 def versionNumber = version
 
-
-dependencies {
-    compile 'com.google.guava:guava:23.0'
-    testCompile 'junit:junit:4.12'
-}
-
 artifactory {
-    contextUrl = "http://54.254.232.223:8081/artifactory"
+    contextUrl = 'http://54.254.232.223:8081/artifactory' // base artifactory url
     publish {
         repository {
-            repoKey = 'nocnoc-qa-gradle'
-            username = "admin"
-            password = "Admin123"
+            repoKey = 'nocnoc-qa-gradle'   // Artifactory repository key to publish to
+            username = 'admin'      // publisher user name
+            password = 'Admin123'       // publisher password
             maven = true
-
-        }       
-        defaults {
-            publications ('mavenJava')
         }
     }
 }
+
 artifactoryPublish { 
     dependsOn jar
 }
-
