@@ -9,12 +9,15 @@ repositories {
     jcenter()
 }
 
-apply plugin: 'scala'
-apply plugin: 'maven-publish'
-apply plugin: "com.jfrog.artifactory"
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'artifactory-publish'
 
-version = '1.0.0-SNAPSHOT'
-group = 'com.buransky'
+groupId = 'myGroup'
+version = '1.0'
+def artifactId = test.name
+def versionNumber = version
 
 
 dependencies {
@@ -37,11 +40,7 @@ artifactory {
         }
     }
 }
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
+artifactoryPublish { 
+    dependsOn jar
 }
+
